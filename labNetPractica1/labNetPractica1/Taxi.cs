@@ -5,7 +5,7 @@ namespace labNetPractica1
 {
     public class Taxi : TransportePublico
     {
-        public const int MaxPasajaeros = 6;
+        public const int MaxPasajaeros = 4;
         public int idTaxi { get; set; }
         public bool enMarcha { get; set; }
 
