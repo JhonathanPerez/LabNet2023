@@ -24,7 +24,7 @@ namespace Poo
                 Console.WriteLine("**************************************");
                 Console.WriteLine("1. Cargar pasajeros taxi");
                 Console.WriteLine("2. Cargar pasajeros omnibus");
-                Console.WriteLine("3. Mostrar pasajeros vehículos");
+                Console.WriteLine("3. Mostrar detalles de los vehículos");
                 Console.WriteLine("4. Poner en marcha vehículos");
                 Console.WriteLine("5. Detener vehículos");
                 Console.WriteLine("6. Salir\n");
