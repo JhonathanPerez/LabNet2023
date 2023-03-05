@@ -5,7 +5,7 @@ namespace labNetPractica1
 {
     public class Taxi : TransportePublico
     {
-        public const int MaxPasajaeros = 4;
+        public const int MaxPasajeros = 4;
         public int idTaxi { get; set; }
         public bool enMarcha { get; set; }
 
@@ -44,7 +44,7 @@ namespace labNetPractica1
 
         public static bool ValidarNumeroPasajeros(int Npasajeros)
         {
-            return Npasajeros > 0 && Npasajeros <= MaxPasajaeros;
+            return Npasajeros > 0 && Npasajeros <= MaxPasajeros;
         }
 
         public override void MostrarPasajeros()
