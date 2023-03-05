@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace labNetPractica1
     {
         static void Main(string[] args)
         {
+            Menu menu = new Menu();
+            menu.MostrarEncabezado();
         }
     }
 }
