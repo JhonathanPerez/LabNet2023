@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Poo
+namespace labNetPractica1
 {
     public class OmniBus : TransportePublico
     {

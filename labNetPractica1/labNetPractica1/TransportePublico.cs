@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Poo
+namespace labNetPractica1
 {
     public abstract class TransportePublico
     {
