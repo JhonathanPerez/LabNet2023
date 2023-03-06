@@ -142,48 +142,83 @@ namespace labNetPractica1
             {
                 if (tipoVehiculo == TipoTaxi)
                 {
-                    Console.WriteLine("Antención sólo se podrán agregar un Máximo de 4 pasajeros\n");
-                    for (int i = 0; i < 5; i++)
-                    {
-                        Console.Write($"Ingrese la cantidad de pasajeros para el taxi {i + 1}: ");
-                        Npasajeros = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine(
+                        "Antención sólo se podrán agregar un Máximo de 4 pasajeros\n"
+                    );
 
-                        if (Taxi.ValidarNumeroPasajeros(Npasajeros))
+                    if (Taxi.maxVehiculos > 0)
+                    {
+                        for (int i = 0; i < 5; i++)
                         {
-                            listaTransportes.Add(new Taxi(Npasajeros, i + 1));
-                        }
-                        else
-                        {
+                            Console.WriteLine($"Vehiculos disponibles: {Taxi.maxVehiculos}\n");
+
+                            Console.Write(
+                                $"Ingrese la cantidad de pasajeros para el taxi {i + 1}: "
+                            );
+                            Npasajeros = Convert.ToInt32(Console.ReadLine());
                             Console.Clear();
-                            Console.WriteLine("El número de pasajeros no es válido");
-                            Console.WriteLine("\nPresione una tecla para continuar...");
-                            listaTransportes.Clear();
-                            Console.ReadKey();
-                            break;
+
+                            if (Taxi.ValidarNumeroPasajeros(Npasajeros))
+                            {
+                                listaTransportes.Add(new Taxi(Npasajeros, i + 1));
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("El número de pasajeros no es válido");
+                                Console.WriteLine("\nPresione una tecla para continuar...");
+                                listaTransportes.Clear();
+                                Console.ReadKey();
+                                break;
+                            }
                         }
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("No se pueden agregar más vehículos tipo Taxi");
+                        Console.WriteLine("\nPresione una tecla para continuar...");
+                        Console.ReadKey();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Antención sólo se podrán agregar un máximo de 100 pasajeros\n");
-                    for (int i = 0; i < 5; i++)
-                    {
-                        Console.Write($"Ingrese la cantidad de pasajeros para el Omnibus {i + 1}: ");
-                        Npasajeros = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine(
+                        "Antención sólo se podrán agregar un máximo de 100 pasajeros\n"
+                    );
 
-                        if (OmniBus.ValidarNumeroPasajeros(Npasajeros))
+                    if (OmniBus.maxVehiculos > 0)
+                    {
+                        for (int i = 0; i < 5; i++)
                         {
-                            listaTransportes.Add(new OmniBus(Npasajeros, i + 1));
-                        }
-                        else
-                        {
+                            Console.WriteLine($"Vehiculos disponibles: {OmniBus.maxVehiculos}\n");
+                            Console.Write(
+                                $"Ingrese la cantidad de pasajeros para el Omnibus {i + 1}: "
+                            );
+                            Npasajeros = Convert.ToInt32(Console.ReadLine());
                             Console.Clear();
-                            Console.WriteLine("El número de pasajeros no es válido");
-                            listaTransportes.Clear();
-                            Console.WriteLine("\nPresione una tecla para continuar...");
-                            Console.ReadKey();
-                            break;
+
+                            if (OmniBus.ValidarNumeroPasajeros(Npasajeros))
+                            {
+                                listaTransportes.Add(new OmniBus(Npasajeros, i + 1));
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("El número de pasajeros no es válido");
+                                listaTransportes.Clear();
+                                Console.WriteLine("\nPresione una tecla para continuar...");
+                                Console.ReadKey();
+                                break;
+                            }
                         }
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("No se pueden agregar más vehículos tipo OmniBus");
+                        Console.WriteLine("\nPresione una tecla para continuar...");
+                        Console.ReadKey();
                     }
                 }
             }
