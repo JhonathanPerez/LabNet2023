@@ -125,6 +125,7 @@ namespace labNetPractica1
                 {
                     Console.Clear();
                     Console.WriteLine("Ops solo se pueden ingresar valores númericos!!");
+                    listaTransportes.Clear();
                     Console.ReadKey();
                     Console.Clear();
                 }
@@ -137,47 +138,61 @@ namespace labNetPractica1
 
             int Npasajeros;
 
-            if (tipoVehiculo == TipoTaxi)
+            if (listaTransportes.Count < 10)
             {
-                for (int i = 0; i < 5; i++)
+                if (tipoVehiculo == TipoTaxi)
                 {
-                    Console.Write($"Ingrese la cantidad de pasajeros para el taxi {i + 1}: ");
-                    Npasajeros = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Antención sólo se podrán agregar un xáximo de 4 pasajeros\n");
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Console.Write($"Ingrese la cantidad de pasajeros para el taxi {i + 1}: ");
+                        Npasajeros = Convert.ToInt32(Console.ReadLine());
 
-                    if (Taxi.ValidarNumeroPasajeros(Npasajeros))
-                    {
-                        listaTransportes.Add(new Taxi(Npasajeros, i + 1));
+                        if (Taxi.ValidarNumeroPasajeros(Npasajeros))
+                        {
+                            listaTransportes.Add(new Taxi(Npasajeros, i + 1));
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("El número de pasajeros no es válido");
+                            Console.WriteLine("\nPresione una tecla para continuar...");
+                            listaTransportes.Clear();
+                            Console.ReadKey();
+                            break;
+                        }
                     }
-                    else
+                }
+                else
+                {
+                    Console.WriteLine("Antención sólo se podrán agregar un máximo de 100 pasajeros\n");
+                    for (int i = 0; i < 5; i++)
                     {
-                        Console.Clear();
-                        Console.WriteLine("El número de pasajeros no es válido");
-                        Console.WriteLine("\nPresione una tecla para continuar...");
-                        Console.ReadKey();
-                        break;
+                        Console.Write($"Ingrese la cantidad de pasajeros para el Omnibus {i + 1}: ");
+                        Npasajeros = Convert.ToInt32(Console.ReadLine());
+
+                        if (OmniBus.ValidarNumeroPasajeros(Npasajeros))
+                        {
+                            listaTransportes.Add(new OmniBus(Npasajeros, i + 1));
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("El número de pasajeros no es válido");
+                            listaTransportes.Clear();
+                            Console.WriteLine("\nPresione una tecla para continuar...");
+                            Console.ReadKey();
+                            break;
+                        }
                     }
                 }
             }
             else
             {
-                for (int i = 0; i < 5; i++)
-                {
-                    Console.Write($"Ingrese la cantidad de pasajeros para el Omnibus {i + 1}: ");
-                    Npasajeros = Convert.ToInt32(Console.ReadLine());
-
-                    if (OmniBus.ValidarNumeroPasajeros(Npasajeros))
-                    {
-                        listaTransportes.Add(new OmniBus(Npasajeros, i + 1));
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("El número de pasajeros no es válido");
-                        Console.WriteLine("\nPresione una tecla para continuar...");
-                        Console.ReadKey();
-                        break;
-                    }
-                }
+                Console.Clear();
+                Console.WriteLine("No se pueden agregar más vehículos");
+                Console.WriteLine("\nPresione una tecla para continuar...");
+                Console.ReadKey();
             }
         }
     }
