@@ -5,6 +5,8 @@ namespace labNetPractica1
 {
     public class Taxi : TransportePublico
     {
+        public static int maxVehiculos = 5;
+
         public const int MaxPasajeros = 4;
         public int idTaxi { get; set; }
         public bool enMarcha { get; set; }
@@ -14,6 +16,7 @@ namespace labNetPractica1
         {
             this.idTaxi = idTaxi;
             this.enMarcha = enMarcha;
+            maxVehiculos--;
         }
 
         public override void Avanzar()
