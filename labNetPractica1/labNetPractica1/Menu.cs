@@ -142,7 +142,7 @@ namespace labNetPractica1
             {
                 if (tipoVehiculo == TipoTaxi)
                 {
-                    Console.WriteLine("Antención sólo se podrán agregar un xáximo de 4 pasajeros\n");
+                    Console.WriteLine("Antención sólo se podrán agregar un Máximo de 4 pasajeros\n");
                     for (int i = 0; i < 5; i++)
                     {
                         Console.Write($"Ingrese la cantidad de pasajeros para el taxi {i + 1}: ");
