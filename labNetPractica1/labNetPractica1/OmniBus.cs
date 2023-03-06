@@ -8,6 +8,8 @@ namespace labNetPractica1
 {
     public class OmniBus : TransportePublico
     {
+        public static int maxVehiculos = 5;
+
         public const int MaxPasajeros = 100;
         public int idOminiBus { get; set; }
         public bool enMarcha { get; set; }
@@ -16,6 +18,7 @@ namespace labNetPractica1
             : base(NumeroPasajeros)
         {
             this.idOminiBus = idOmnibus;
+            maxVehiculos--;
         }
 
         public override void Avanzar()
@@ -27,7 +30,9 @@ namespace labNetPractica1
             }
             else
             {
-                Console.WriteLine($"Soy el omniBus número {this.idOminiBus} ya me encuentro en marcha");
+                Console.WriteLine(
+                    $"Soy el omniBus número {this.idOminiBus} ya me encuentro en marcha"
+                );
             }
         }
 
@@ -37,7 +42,6 @@ namespace labNetPractica1
             {
                 Console.WriteLine($"Soy el Omnibus número {this.idOminiBus} y me estoy detenido");
                 this.enMarcha = false;
-
             }
             else
             {
