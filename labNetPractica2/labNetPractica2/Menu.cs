@@ -34,39 +34,48 @@ namespace labNetPractica2
                 Encabezado();
                 Console.Write("Ingrese su opción: ");
 
-                opcion = Convert.ToInt32(Console.ReadLine());
-
-                switch (opcion)
+                try
                 {
-                    case 1:
+                    opcion = Convert.ToInt32(Console.ReadLine());
 
-                        Ejercicio1();
+                    switch (opcion)
+                    {
+                        case 1:
 
-                        break;
+                            Ejercicio1();
 
-                    case 2:
+                            break;
 
-                        Ejercicio2();
-                        break;
+                        case 2:
 
-                    case 3:
+                            Ejercicio2();
+                            break;
 
-                        Ejercicio3();
-                        break;
+                        case 3:
 
-                    case 4:
+                            Ejercicio3();
+                            break;
 
-                        Ejercicio4();
-                        break;
+                        case 4:
 
-                    case 5:
+                            Ejercicio4();
+                            break;
 
-                        salir = true;
-                        break;
+                        case 5:
 
-                    default:
-                        Console.WriteLine("Opción no valida");
-                        break;
+                            salir = true;
+                            break;
+
+                        default:
+                            Console.WriteLine("Opción no valida");
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.ReadKey();
+                    Console.WriteLine("Opss! solo se permiten valores númericos");
+                    Console.ReadKey();
                 }
             }
         }
