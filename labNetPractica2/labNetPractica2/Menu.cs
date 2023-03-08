@@ -113,21 +113,21 @@ namespace labNetPractica2
             {
                 Console.Clear();
 
-                int resultado;
-                int dividendo;
-                int divisor;
+                decimal resultado;
+                decimal dividendo;
+                decimal divisor;
 
                 Console.Write("Ingrese el dividendo: ");
-                dividendo = Convert.ToInt32(Console.ReadLine());
+                dividendo = Convert.ToDecimal(Console.ReadLine());
 
                 Console.Write("Ingrese el divisor: ");
-                divisor = Convert.ToInt32(Console.ReadLine());
+                divisor = Convert.ToDecimal(Console.ReadLine());
 
                 Console.Clear();
 
                 resultado = operacion.Dividir(dividendo, divisor);
                 Console.WriteLine(
-                    $"El resultado de dividir {dividendo} / {divisor} = {resultado} "
+                    $"El resultado de dividir {dividendo} / {divisor} = {Math.Round(resultado,2)} "
                 );
 
                 Console.ReadKey();
