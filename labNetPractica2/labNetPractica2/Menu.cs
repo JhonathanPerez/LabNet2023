@@ -71,7 +71,7 @@ namespace labNetPractica2
                             break;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Console.Clear();
                     Console.WriteLine("Opss! solo se permiten valores númericos");
@@ -127,7 +127,7 @@ namespace labNetPractica2
 
                 resultado = operacion.Dividir(dividendo, divisor);
                 Console.WriteLine(
-                    $"El resultado es de dividir {dividendo} / {divisor} = {resultado} "
+                    $"El resultado de dividir {dividendo} / {divisor} = {resultado} "
                 );
 
                 Console.ReadKey();
@@ -152,7 +152,7 @@ namespace labNetPractica2
         {
             try
             {
-                logic.DispararExecpcion();
+                logic.DispararExcepcion();
             }
             catch (Exception ex)
             {
