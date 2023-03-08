@@ -178,8 +178,12 @@ namespace labNetPractica2
             try
             {
                 Console.Clear();
+                int numero;
 
-                logic.DispararExecpcionPersonalizada();
+                Console.Write("Ingrese un número par: ");
+                numero = Convert.ToInt32((Console.ReadLine()));
+
+                logic.NumeroPar(numero);
             }
             catch (Exception ex)
             {
