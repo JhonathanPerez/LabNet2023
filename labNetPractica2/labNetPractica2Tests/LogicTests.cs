@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using labNetPractica2;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace labNetPractica2.Tests
 {
@@ -16,15 +11,16 @@ namespace labNetPractica2.Tests
         public void DispararExecpcionTest()
         {
             Logic logic = new Logic();
-            logic.DispararExecpcion();
+            logic.DispararExcepcion();
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(LetraException))]
+        [ExpectedException(typeof(NumeroParException))]
         public void DispararExecpcionPersonalizadaTest()
         {
+            int numero = 3;
             Logic logic = new Logic();
-            logic.DispararExecpcionPersonalizada();
+            logic.NumeroPar(numero);
         }
     }
 }
