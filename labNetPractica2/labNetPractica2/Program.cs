@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace labNetPractica2
+﻿namespace labNetPractica2
 {
     internal class Program
     {
