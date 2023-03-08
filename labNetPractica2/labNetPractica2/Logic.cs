@@ -13,9 +13,12 @@ namespace labNetPractica2
             throw new ArrayTypeMismatchException();
         }
 
-        public void DispararExecpcionPersonalizada()
+        public void NumeroPar(int numero)
         {
-            throw new LetraException();
+            if (numero % 2 != 0)
+            {
+                throw new NumeroParException();
+            }
         }
     }
 }
