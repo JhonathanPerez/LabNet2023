@@ -127,7 +127,7 @@ namespace labNetPractica2
 
                 resultado = operacion.Dividir(dividendo, divisor);
                 Console.WriteLine(
-                    $"El resultado de dividir {dividendo} / {divisor} = {Math.Round(resultado,2)} "
+                    $"El resultado de dividir {dividendo} / {divisor} = {Math.Round(resultado, 2)} "
                 );
 
                 Console.ReadKey();
