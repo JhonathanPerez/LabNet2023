@@ -48,15 +48,20 @@ namespace labNetPractica2
                         break;
 
                     case 3:
+
                         Ejercicio3();
                         break;
+
                     case 4:
+
                         Ejercicio4();
                         break;
 
                     case 5:
+
                         salir = true;
                         break;
+
                     default:
                         Console.WriteLine("Opción no valida");
                         break;
