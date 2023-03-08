@@ -2,7 +2,7 @@
 {
     public class Operaciones
     {
-        public int Dividir(int numero1, int numero2)
+        public decimal Dividir(decimal numero1, decimal numero2)
         {
             return numero1 / numero2;
         }
