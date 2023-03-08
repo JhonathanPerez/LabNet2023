@@ -4,6 +4,8 @@ namespace labNetPractica2
 {
     public class Menu
     {
+        public const int CERO = 0;
+
         Operaciones operacion = new Operaciones();
         Logic logic = new Logic();
 
@@ -80,7 +82,7 @@ namespace labNetPractica2
                 Console.Write("Ingrese un valor: ");
                 valor = Convert.ToInt32(Console.ReadLine());
 
-                operacion.Dividir(valor, 0);
+                operacion.Dividir(valor, CERO);
             }
             catch (Exception ex)
             {
