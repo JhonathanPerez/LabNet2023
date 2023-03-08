@@ -11,7 +11,7 @@ namespace labNetPractica2.Tests
             int numero1 = 10;
             int numero2 = 2;
             int resultadoEsperado = 5;
-            int resultadoActual;
+            decimal resultadoActual;
 
             Operaciones operacion = new Operaciones();
             resultadoActual = operacion.Dividir(numero1, numero2);
