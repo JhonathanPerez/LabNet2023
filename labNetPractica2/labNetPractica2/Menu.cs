@@ -73,7 +73,7 @@ namespace labNetPractica2
                 }
                 catch (Exception ex)
                 {
-                    Console.ReadKey();
+                    Console.Clear();
                     Console.WriteLine("Opss! solo se permiten valores númericos");
                     Console.ReadKey();
                 }
