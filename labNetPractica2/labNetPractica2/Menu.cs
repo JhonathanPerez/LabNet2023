@@ -86,10 +86,10 @@ namespace labNetPractica2
             {
                 Console.Clear();
 
-                int valor;
+                decimal valor;
 
                 Console.Write("Ingrese un valor: ");
-                valor = Convert.ToInt32(Console.ReadLine());
+                valor = Convert.ToDecimal(Console.ReadLine());
 
                 operacion.Dividir(valor, CERO);
             }
