@@ -146,42 +146,19 @@ namespace Lab.EF.UI
 
         public void AddCategory()
         {
-            string nombre;
-            string descripcion;
+            string categoryName;
 
-            CategoriesLogic categoriaLogic = new CategoriesLogic();
+            CategoriesLogic categoryLogic = new CategoriesLogic();
 
             Console.Clear();
 
             try
             {
                 Console.Write("Ingrese el nombre de la categoría: ");
-                nombre = Console.ReadLine();
+                categoryName = Console.ReadLine();
 
-                if (categoriaLogic.ItemExist(nombre) == null)
-                {
-                    Console.Write("Ingrese la descripción de la categoría: ");
-                    descripcion = Console.ReadLine();
+                ValidateDataAddCategory(categoryName, categoryLogic);
 
-                    Categories categoria = new Categories
-                    {
-                        CategoryName = nombre,
-                        Description = descripcion
-
-                    };
-
-                    categoriaLogic.Add(categoria);
-
-                    Console.Clear();
-                    Console.WriteLine("Categoría agregada exitosamente");
-                    Console.ReadKey();
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("El nombre de la categoría ya existe en la base de datos");
-                    Console.ReadKey();
-                }
             }
             catch (Exception)
             {
@@ -229,8 +206,6 @@ namespace Lab.EF.UI
         public void UpdateCategory()
         {
             int idCategory;
-            string categoryName;
-            string categoryDescription;
 
             CategoriesLogic categoriaLogic = new CategoriesLogic();
 
@@ -241,35 +216,8 @@ namespace Lab.EF.UI
                 Console.Write("Ingrese el id de la categoría a editar: ");
                 idCategory = Convert.ToInt32(Console.ReadLine());
 
-                Console.Clear();
+                validateDataUpdateCategory(idCategory, categoriaLogic);
 
-                if (categoriaLogic.ItemExist(idCategory) != null)
-                {
-                    Console.Write("Ingrese el nuevo nombre de la categoría: ");
-                    categoryName = Console.ReadLine();
-
-                    Console.Write("Ingrese la nueva descripción de la categoria: ");
-                    categoryDescription = Console.ReadLine();
-
-                    Categories updateCategory = new Categories
-                    {
-                        CategoryID = idCategory,
-                        CategoryName = categoryName,
-                        Description = categoryDescription
-
-                    };
-
-                    categoriaLogic.Update(updateCategory);
-
-                    Console.Clear();
-                    Console.WriteLine("Categoría actualizada exitosamente");
-                }
-                else
-                {
-                    Console.WriteLine($"La categoría con id {idCategory} no existe en el sistema");
-                }
-
-                Console.ReadKey();
             }
             catch (Exception)
             {
@@ -305,7 +253,6 @@ namespace Lab.EF.UI
         public void AddShipper()
         {
             string companyName;
-            string companyPhone;
 
             ShippersLogic shippersLogic = new ShippersLogic();
 
@@ -316,31 +263,9 @@ namespace Lab.EF.UI
                 Console.Write("Ingrese el nombre de la compañia: ");
                 companyName = Console.ReadLine();
 
-                if (shippersLogic.ItemExist(companyName) == null)
-                {
-                    Console.Write("Ingrese el teléfono de la compañia: ");
-                    companyPhone = Console.ReadLine();
+                ValidateDataAddShipper(companyName, shippersLogic);
 
-                    Shippers shipper = new Shippers
-                    {
-                        CompanyName = companyName,
-                        Phone = companyPhone
 
-                    };
-
-                    shippersLogic.Add(shipper);
-
-                    Console.Clear();
-                    Console.WriteLine("Compañia agregada exitosamente");
-                    Console.ReadKey();
-
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("El nombre de la compañia ya existe en la base de datos");
-                    Console.ReadKey();
-                }
             }
             catch (Exception)
             {
@@ -388,8 +313,6 @@ namespace Lab.EF.UI
         public void UpdateShipper()
         {
             int idShipper;
-            string shipperName;
-            string shipperPhone;
 
             ShippersLogic shippersLogic = new ShippersLogic();
 
@@ -402,34 +325,7 @@ namespace Lab.EF.UI
 
                 Console.Clear();
 
-                if (shippersLogic.ItemExist(idShipper) != null)
-                {
-                    Console.Write("Ingrese el nuevo nombre de la compañia: ");
-                    shipperName = Console.ReadLine();
-
-                    Console.Write("Ingrese el nuevo teléfono de la compañia: ");
-                    shipperPhone = Console.ReadLine();
-
-                    Shippers updatedShipper = new Shippers
-                    {
-                        ShipperID = idShipper,
-                        CompanyName = shipperName,
-                        Phone = shipperPhone
-
-                    };
-
-                    shippersLogic.Update(updatedShipper);
-
-                    Console.Clear();
-                    Console.WriteLine("Compañia actualizada exitosamente");
-                    Console.ReadKey();
-
-                }
-                else
-                {
-                    Console.WriteLine($"La compañia con id {idShipper} no existe en el sistema");
-                    Console.ReadKey();
-                }
+                validateDataUpdateShipper(idShipper, shippersLogic);
 
             }
             catch (Exception)
@@ -440,7 +336,165 @@ namespace Lab.EF.UI
             }
         }
 
+        public void ValidateDataAddCategory(string categoryName, CategoriesLogic categoriesLogic)
+        {
+            string categoryDescription;
+
+            if (categoriesLogic.ItemExist(categoryName) != null)
+            {
+                Console.Clear();
+                Console.WriteLine("El nombre de la categoría ya existe en la base de datos");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.Clear();
+            Console.Write("Ingrese la descripción de la categoría: ");
+            categoryDescription = Console.ReadLine();
+
+            Categories categoria = new Categories
+            {
+                CategoryName = categoryName,
+                Description = categoryDescription
+
+            };
+
+            categoriesLogic.Add(categoria);
+
+            Console.Clear();
+            Console.WriteLine("Categoría agregada exitosamente");
+            Console.ReadKey();
+        }
+
+        public void validateDataUpdateCategory(int idCategory, CategoriesLogic categoryLogic)
+        {
+            string categoryName;
+            string categoryDescription;
+
+            if (categoryLogic.ItemExist(idCategory) == null)
+            {
+                Console.Clear();
+                Console.WriteLine($"La categoría con id {idCategory} no existe en el sistema");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.Write("Ingrese el nuevo nombre de la categoría: ");
+            categoryName = Console.ReadLine();
+
+            if (categoryLogic.ItemExist(categoryName) != null)
+            {
+                Console.Clear();
+                Console.WriteLine("El nombre de la categoria ya existe en la base de datos");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.Clear();
+
+            Console.Write("Ingrese la nueva descripción de la categoria: ");
+            categoryDescription = Console.ReadLine();
+
+            Categories updateCategory = new Categories
+            {
+                CategoryID = idCategory,
+                CategoryName = categoryName,
+                Description = categoryDescription
+
+            };
+
+            categoryLogic.Update(updateCategory);
+
+            Console.Clear();
+            Console.WriteLine("Categoría actualizada exitosamente");
+            Console.ReadKey();
+        }
+
+        public void ValidateDataAddShipper(string companyName, ShippersLogic shippersLogic)
+        {
+            string companyPhone;
+
+            if (shippersLogic.ItemExist(companyName) != null)
+            {
+                Console.Clear();
+                Console.WriteLine("El nombre de la compañia ya existe en la base de datos");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.Write("Ingrese el teléfono de la compañia: ");
+            companyPhone = Console.ReadLine();
+
+            if (!companyPhone.ContainLetters())
+            {
+                Console.Clear();
+                Console.WriteLine("El campo de teléfono solo acepta valores númericos");
+                Console.ReadKey();
+                return;
+            }
+
+            Shippers shipper = new Shippers
+            {
+                CompanyName = companyName,
+                Phone = companyPhone
+
+            };
+
+            shippersLogic.Add(shipper);
+
+            Console.Clear();
+            Console.WriteLine("Compañia agregada exitosamente");
+            Console.ReadKey();
+        }
+
+        public void validateDataUpdateShipper(int idShipper, ShippersLogic shippersLogic)
+        {
+            string shipperName;
+            string shipperPhone;
+
+            if (shippersLogic.ItemExist(idShipper) == null)
+            {
+                Console.WriteLine($"La compañia con id {idShipper} no existe en el sistema");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.Write("Ingrese el nuevo nombre de la compañia: ");
+            shipperName = Console.ReadLine();
+
+            if (shippersLogic.ItemExist(shipperName) != null)
+            {
+                Console.Clear();
+                Console.WriteLine("El nombre de la compañia ya existe en la base de datos");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.Write("Ingrese el nuevo teléfono de la compañia: ");
+            shipperPhone = Console.ReadLine();
+
+            if (!shipperPhone.ContainLetters())
+            {
+                Console.Clear();
+                Console.WriteLine("El campo de teléfono solo acepta valores númericos");
+                Console.ReadKey();
+                return;
+            }
+
+            Shippers updatedShipper = new Shippers
+            {
+                ShipperID = idShipper,
+                CompanyName = shipperName,
+                Phone = shipperPhone
+
+            };
+
+            shippersLogic.Update(updatedShipper);
+
+            Console.Clear();
+            Console.WriteLine("Compañia actualizada exitosamente");
+            Console.ReadKey();
+        }
+
     }
-
-
 }
