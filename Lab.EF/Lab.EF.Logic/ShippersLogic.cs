@@ -46,6 +46,13 @@ namespace Lab.EF.Logic
             return shipper != null ? shipper : null;
         }
 
+        public Shippers ItemExist(string shipperName)
+        {
+            var shipper = _nortwindContext.Shippers.SingleOrDefault(name => name.CompanyName == shipperName);
+
+            return shipper != null ? shipper : null;
+        }
+
         public void Update(Shippers shipper)
         {
             var shipperExist = _nortwindContext.Shippers.Find(shipper.ShipperID);
