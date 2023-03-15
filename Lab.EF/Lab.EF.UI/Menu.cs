@@ -1,6 +1,10 @@
 ﻿using Lab.EF.Entities;
 using Lab.EF.Logic;
 using System;
+using DataTablePrettyPrinter;
+using System.Data;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Lab.EF.UI
 {
@@ -23,6 +27,35 @@ namespace Lab.EF.UI
             Console.WriteLine("7. Eliminar Expedidor");
             Console.WriteLine("8. Actualizar Expedidor");
             Console.WriteLine("9. Salir\n");
+        }
+
+        public void printTableCategories(List<Categories> categories)
+        {
+            DataTable table = new DataTable("Categories");
+            table.Columns.Add("#", typeof(String));
+            table.Columns.Add("Nombre Categoría", typeof(String));
+            table.Columns.Add("Descripción Categoría", typeof(String));
+
+           foreach (Categories cat in categories) {
+                table.Rows.Add(cat.CategoryID, cat.CategoryName,cat.Description);
+            }
+
+            Console.WriteLine(table.ToPrettyPrintedString());
+        }
+
+        public void printTableShippers(List<Shippers> shippers)
+        {
+            DataTable table = new DataTable("Shippers");
+            table.Columns.Add("#", typeof(String));
+            table.Columns.Add("Nombre Compañia", typeof(String));
+            table.Columns.Add("Teléfono Compañia", typeof(String));
+
+            foreach (Shippers ship in shippers)
+            {
+                table.Rows.Add(ship.ShipperID, ship.CompanyName, ship.Phone);
+            }
+
+            Console.WriteLine(table.ToPrettyPrintedString());
         }
 
         public void Opciones()
@@ -90,20 +123,25 @@ namespace Lab.EF.UI
 
         public void ListCategories()
         {
-            CategoriesLogic categorias = new CategoriesLogic();
-
-            Console.Clear();
-
-            foreach (Categories categoria in categorias.GetAll())
+            try
             {
-                Console.WriteLine(
-                    $"{categoria.CategoryID}. Nombre categoria:{categoria.CategoryName} \n Descripción: {categoria.Description} \n"
-                );
+                CategoriesLogic categorias = new CategoriesLogic();
+
+                List<Categories> listCategories = categorias.GetAll();
+
+                Console.Clear();
+
+                printTableCategories(listCategories);
+
+                Console.WriteLine("Presione una tecla para continuar...");
+
+                Console.ReadLine();
             }
+            catch (Exception ex)
+            {
 
-            Console.WriteLine("Presione una tecla para continuar...");
-
-            Console.ReadLine();
+                Console.WriteLine("Ocurrió un error: "+ ex.Message);
+            }
         }
 
         public void AddCategory()
@@ -234,20 +272,24 @@ namespace Lab.EF.UI
 
         public void ListShippers()
         {
-            ShippersLogic shippers = new ShippersLogic();
-
-            Console.Clear();
-
-            foreach (Shippers shipper in shippers.GetAll())
+            try
             {
-                Console.WriteLine(
-                    $"{shipper.ShipperID}. Nombre de la compañia:{shipper.CompanyName} \n Descripción: {shipper.Phone} \n"
-                );
+                ShippersLogic shippers = new ShippersLogic();
+
+                List<Shippers> listShippers = shippers.GetAll();
+
+                Console.Clear();
+
+                printTableShippers(listShippers);
+
+                Console.WriteLine("Presione una tecla para continuar...");
+
+                Console.ReadLine();
             }
-
-            Console.WriteLine("Presione una tecla para continuar...");
-
-            Console.ReadLine();
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: "+ ex.Message);
+            }
         }
 
         public void AddShipper()
