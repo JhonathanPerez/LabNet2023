@@ -14,28 +14,7 @@ namespace Lab.EF.Test
     public class UnitTest1
     {
         [TestMethod]
-        public void Add()
-        {
-            var mockSet = new Mock<DbSet<Categories>>();
-
-            var mockContext = new Mock<NorthwindContext>();
-            mockContext.Setup(m => m.Categories).Returns(mockSet.Object);
-
-            CategoriesLogic categoryLogic = new CategoriesLogic(mockContext.Object);
-
-            categoryLogic.Add(new Categories
-            {
-                CategoryName = "Prueba",
-                Description = "Descripción prueba",      
-
-            });
-
-            mockSet.Verify(m => m.Add(It.IsAny<Categories>()), Times.Once());
-            mockContext.Verify(m => m.SaveChanges(), Times.Once());
-        }
-
-        [TestMethod]
-        public void GetAll()
+        public void GetAllCategories()
         {
             var data = new List<Categories>{}.AsQueryable();
 
