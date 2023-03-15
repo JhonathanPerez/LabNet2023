@@ -139,8 +139,8 @@ namespace Lab.EF.UI
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine("Ocurrió un error: "+ ex.Message);
+                Console.ReadKey();
             }
         }
 
@@ -289,6 +289,7 @@ namespace Lab.EF.UI
             catch (Exception ex)
             {
                 Console.WriteLine("Ocurrió un error: "+ ex.Message);
+                Console.ReadKey();
             }
         }
 
