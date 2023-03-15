@@ -1,10 +1,9 @@
-﻿using Lab.EF.Entities;
+﻿using DataTablePrettyPrinter;
+using Lab.EF.Entities;
 using Lab.EF.Logic;
 using System;
-using DataTablePrettyPrinter;
-using System.Data;
-using System.Linq;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Lab.EF.UI
 {
@@ -36,8 +35,9 @@ namespace Lab.EF.UI
             table.Columns.Add("Nombre Categoría", typeof(String));
             table.Columns.Add("Descripción Categoría", typeof(String));
 
-           foreach (Categories cat in categories) {
-                table.Rows.Add(cat.CategoryID, cat.CategoryName,cat.Description);
+            foreach (Categories cat in categories)
+            {
+                table.Rows.Add(cat.CategoryID, cat.CategoryName, cat.Description);
             }
 
             Console.WriteLine(table.ToPrettyPrintedString());
@@ -139,7 +139,7 @@ namespace Lab.EF.UI
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ocurrió un error: "+ ex.Message);
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
                 Console.ReadKey();
             }
         }
@@ -158,21 +158,30 @@ namespace Lab.EF.UI
                 Console.Write("Ingrese el nombre de la categoría: ");
                 nombre = Console.ReadLine();
 
-                Console.Write("Ingrese la descripción de la categoría: ");
-                descripcion = Console.ReadLine();
-
-                Categories categoria = new Categories
+                if (categoriaLogic.ItemExist(nombre) == null)
                 {
-                    CategoryName = nombre,
-                    Description = descripcion
+                    Console.Write("Ingrese la descripción de la categoría: ");
+                    descripcion = Console.ReadLine();
 
-                };
+                    Categories categoria = new Categories
+                    {
+                        CategoryName = nombre,
+                        Description = descripcion
 
-                categoriaLogic.Add(categoria);
+                    };
 
-                Console.Clear();
-                Console.WriteLine("Categoría agregada exitosamente");
-                Console.ReadKey();
+                    categoriaLogic.Add(categoria);
+
+                    Console.Clear();
+                    Console.WriteLine("Categoría agregada exitosamente");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("El nombre de la categoría ya existe en la base de datos");
+                    Console.ReadKey();
+                }
             }
             catch (Exception)
             {
@@ -288,7 +297,7 @@ namespace Lab.EF.UI
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ocurrió un error: "+ ex.Message);
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
                 Console.ReadKey();
             }
         }
@@ -307,21 +316,31 @@ namespace Lab.EF.UI
                 Console.Write("Ingrese el nombre de la compañia: ");
                 companyName = Console.ReadLine();
 
-                Console.Write("Ingrese el teléfono de la compañia: ");
-                companyPhone = Console.ReadLine();
-
-                Shippers shipper = new Shippers
+                if (shippersLogic.ItemExist(companyName) == null)
                 {
-                    CompanyName = companyName,
-                    Phone = companyPhone
+                    Console.Write("Ingrese el teléfono de la compañia: ");
+                    companyPhone = Console.ReadLine();
 
-                };
+                    Shippers shipper = new Shippers
+                    {
+                        CompanyName = companyName,
+                        Phone = companyPhone
 
-                shippersLogic.Add(shipper);
+                    };
 
-                Console.Clear();
-                Console.WriteLine("Compañia agregada exitosamente");
-                Console.ReadKey();
+                    shippersLogic.Add(shipper);
+
+                    Console.Clear();
+                    Console.WriteLine("Compañia agregada exitosamente");
+                    Console.ReadKey();
+
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("El nombre de la compañia ya existe en la base de datos");
+                    Console.ReadKey();
+                }
             }
             catch (Exception)
             {
