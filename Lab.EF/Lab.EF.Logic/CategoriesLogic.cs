@@ -1,4 +1,5 @@
-﻿using Lab.EF.Entities;
+﻿using Lab.EF.Data;
+using Lab.EF.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,6 +7,15 @@ namespace Lab.EF.Logic
 {
     public class CategoriesLogic : BaseLogic, IABMLogic<Categories>
     {
+        NorthwindContext _context;
+
+        public CategoriesLogic() { }
+
+        public CategoriesLogic(NorthwindContext context)
+        {
+            _context = context;
+        }
+
         public List<Categories> GetAll()
         {
             return _nortwindContext.Categories.ToList();
