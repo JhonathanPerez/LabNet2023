@@ -403,6 +403,7 @@ namespace Lab.EF.UI
 
                     Console.Clear();
                     Console.WriteLine("Compañia actualizada exitosamente");
+                    Console.ReadKey();
 
                 }
                 else
