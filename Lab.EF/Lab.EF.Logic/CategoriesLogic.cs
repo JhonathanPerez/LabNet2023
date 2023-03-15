@@ -1,10 +1,6 @@
-﻿using Lab.EF.Data;
-using Lab.EF.Entities;
-using System;
+﻿using Lab.EF.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab.EF.Logic
 {
@@ -24,7 +20,14 @@ namespace Lab.EF.Logic
 
         public Categories ItemExist(int id)
         {
-            var category =  _nortwindContext.Categories.Find(id);
+            var category = _nortwindContext.Categories.Find(id);
+
+            return category != null ? category : null;
+        }
+
+        public Categories ItemExist(string categoryName)
+        {
+            var category = _nortwindContext.Categories.SingleOrDefault(name => name.CategoryName == categoryName);
 
             return category != null ? category : null;
         }
