@@ -4,7 +4,6 @@ using Lab.EF.Logic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
-using System;
 using System.Data.Entity;
 using System.Linq;
 
@@ -16,7 +15,7 @@ namespace Lab.EF.Test
         [TestMethod]
         public void GetAllCategories()
         {
-            var data = new List<Categories>{}.AsQueryable();
+            var data = new List<Categories> { }.AsQueryable();
 
             var mockSet = new Mock<DbSet<Categories>>();
             mockSet.As<IQueryable<Categories>>().Setup(m => m.Provider).Returns(data.Provider);
@@ -28,12 +27,12 @@ namespace Lab.EF.Test
             mockContext.Setup(c => c.Categories).Returns(mockSet.Object);
 
             var service = new CategoriesLogic(mockContext.Object);
-            var blogs = service.GetAll();
+            var categories = service.GetAll();
 
-            Assert.AreEqual(8, blogs.Count);
-            Assert.AreEqual(1, blogs[0].CategoryID);
-            Assert.AreEqual("Beverages", blogs[0].CategoryName);
-            Assert.AreEqual("Soft drinks, coffees, teas, beers, and ales", blogs[0].Description);
+            Assert.AreEqual(8, categories.Count);
+            Assert.AreEqual(1, categories[0].CategoryID);
+            Assert.AreEqual("Beverages", categories[0].CategoryName);
+            Assert.AreEqual("Soft drinks, coffees, teas, beers, and ales", categories[0].Description);
         }
 
     }
