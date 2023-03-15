@@ -17,7 +17,7 @@ namespace Lab.EF.Logic
 
         bool Delete(int id);
 
-        void Update(T newCategorie);
+        void Update(T type);
 
 
        
