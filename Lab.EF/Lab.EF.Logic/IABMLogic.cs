@@ -15,9 +15,11 @@ namespace Lab.EF.Logic
 
         T ItemExist(int id);
 
-        bool Delete(int id);
+        T ItemExist(string entity);
 
-        void Update(T type);
+        bool Delete(int entity);
+
+        void Update(T entity);
 
 
        
