@@ -82,7 +82,7 @@ namespace Lab.EF.UI
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Ops ocurrió un error "+ ex.Message);
+                    Console.WriteLine("Ops ocurrió un error " + ex.Message);
                     Console.ReadKey();
                 }
             }
@@ -171,9 +171,10 @@ namespace Lab.EF.UI
                 Console.Clear();
                 Console.WriteLine(ex.Message);
                 Console.ReadKey();
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine("Ocurrió un error "+ex.Message);
+                Console.WriteLine("Ocurrió un error " + ex.Message);
                 Console.ReadKey();
             }
         }
@@ -213,6 +214,7 @@ namespace Lab.EF.UI
 
                     categoriaLogic.Update(updateCategory);
 
+                    Console.Clear();
                     Console.WriteLine("Categoría actualizada exitosamente");
                 }
                 else
@@ -316,7 +318,7 @@ namespace Lab.EF.UI
             catch (Exception ex)
             {
                 Console.Clear();
-                Console.WriteLine("Ocurrió un error: "+ ex.Message);
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
                 Console.ReadKey();
             }
         }
