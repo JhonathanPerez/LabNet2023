@@ -14,7 +14,7 @@ namespace Lab.EF.Test
     public class UnitTest1
     {
         [TestMethod]
-        public void El_Metodo_Add_de_la_logica_invoca_al_Add_y_al_SaveChanges_del_Context()
+        public void Add()
         {
             var mockSet = new Mock<DbSet<Categories>>();
 
@@ -35,7 +35,7 @@ namespace Lab.EF.Test
         }
 
         [TestMethod]
-        public void GetAll_Devuelve_Mas_de_un_elemento()
+        public void GetAll()
         {
             var data = new List<Categories>{}.AsQueryable();
 
