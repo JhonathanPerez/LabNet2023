@@ -82,7 +82,7 @@ namespace Lab.EF.UI
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Ops ocurrió un error "+ ex.Message);
                     Console.ReadKey();
                 }
             }
@@ -159,9 +159,10 @@ namespace Lab.EF.UI
 
                 Console.Clear();
 
-                var result = categoriaLogic.Delete(idCategory) ? "Categoría eliminada exitosamente!!" : "El id de la categoría no existe";
-
-                Console.WriteLine(result);
+                if (categoriaLogic.Delete(idCategory))
+                {
+                    Console.WriteLine("Categoría eliminada exitosamente!!");
+                }
 
                 Console.ReadKey();
             }
@@ -173,6 +174,7 @@ namespace Lab.EF.UI
             }catch (Exception ex)
             {
                 Console.WriteLine("Ocurrió un error "+ex.Message);
+                Console.ReadKey();
             }
         }
 
@@ -215,7 +217,7 @@ namespace Lab.EF.UI
                 }
                 else
                 {
-                    Console.WriteLine("El id de la categoría no existe");
+                    Console.WriteLine($"La categoría con id {idCategory} no existe en el sistema");
                 }
 
                 Console.ReadKey();
@@ -299,9 +301,10 @@ namespace Lab.EF.UI
 
                 Console.Clear();
 
-                var result = shipperLogic.Delete(idShipper) ? "Compañia eliminada exitosamente!!" : "El id de la compañia no existe";
-
-                Console.WriteLine(result);
+                if (shipperLogic.Delete(idShipper))
+                {
+                    Console.WriteLine("Compañia eliminada exitosamente!!");
+                }
 
                 Console.ReadKey();
             }
@@ -310,10 +313,10 @@ namespace Lab.EF.UI
                 Console.WriteLine(ex.Message);
                 Console.ReadKey();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Console.Clear();
-                Console.WriteLine("Error al ingresar el dato");
+                Console.WriteLine("Ocurrió un error: "+ ex.Message);
                 Console.ReadKey();
             }
         }
@@ -359,10 +362,10 @@ namespace Lab.EF.UI
                 }
                 else
                 {
-                    Console.WriteLine("El id de la compañia no existe");
+                    Console.WriteLine($"La compañia con id {idShipper} no existe en el sistema");
+                    Console.ReadKey();
                 }
 
-                Console.ReadKey();
             }
             catch (Exception)
             {
