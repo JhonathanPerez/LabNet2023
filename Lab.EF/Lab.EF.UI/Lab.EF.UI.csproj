@@ -70,6 +70,10 @@
       <Project>{62E7B99E-1A78-457C-86EE-F84A29CA4438}</Project>
       <Name>Lab.EF.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Lab.EF.Utils\Lab.EF.Utils.csproj">
+      <Project>{897CE970-A3D5-4ECA-A4FB-DB86CCD90640}</Project>
+      <Name>Lab.EF.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
