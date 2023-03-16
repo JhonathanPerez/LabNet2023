@@ -15,7 +15,7 @@ namespace Lab.EF.Logic
 
         T ItemExist(int id);
 
-        T ItemExist(string entity);
+        T ItemExist(string name);
 
         bool Delete(int id);
 
