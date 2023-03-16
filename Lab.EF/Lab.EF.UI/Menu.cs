@@ -1,6 +1,7 @@
 ﻿using DataTablePrettyPrinter;
 using Lab.EF.Entities;
 using Lab.EF.Logic;
+using Lab.EF.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -163,7 +164,7 @@ namespace Lab.EF.UI
             catch (Exception)
             {
                 Console.Clear();
-                Console.WriteLine("Error al ingresar el dato");
+                Console.WriteLine("Error al ingresar el dato: No se permiten datos nulos");
                 Console.ReadKey();
             }
         }
@@ -222,7 +223,7 @@ namespace Lab.EF.UI
             catch (Exception)
             {
                 Console.Clear();
-                Console.WriteLine("Error al ingresar el dato");
+                Console.WriteLine("Error al ingresar el dato: No se permiten datos nulos");
                 Console.ReadKey();
             }
         }
@@ -270,7 +271,7 @@ namespace Lab.EF.UI
             catch (Exception)
             {
                 Console.Clear();
-                Console.WriteLine("Error al ingresar el dato");
+                Console.WriteLine("Error al ingresar el dato: No se permiten datos nulos");
                 Console.ReadKey();
             }
         }
@@ -331,7 +332,7 @@ namespace Lab.EF.UI
             catch (Exception)
             {
                 Console.Clear();
-                Console.WriteLine("Error al ingresar el dato");
+                Console.WriteLine("Error al ingresar el dato: No se permiten datos nulos");
                 Console.ReadKey();
             }
         }
@@ -379,6 +380,7 @@ namespace Lab.EF.UI
                 return;
             }
 
+            Console.Clear();
             Console.Write("Ingrese el nuevo nombre de la categoría: ");
             categoryName = Console.ReadLine();
 
