@@ -116,6 +116,7 @@ namespace Lab.EF.UI
                 }
                 catch (Exception ex)
                 {
+                    Console.Clear();
                     Console.WriteLine("Ops ocurrió un error " + ex.Message);
                     Console.ReadKey();
                 }
@@ -152,7 +153,7 @@ namespace Lab.EF.UI
 
                 Console.WriteLine(table.ToPrettyPrintedString());
 
-                Console.ReadKey(true);
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
@@ -194,7 +195,7 @@ namespace Lab.EF.UI
 
                 Console.WriteLine(table.ToPrettyPrintedString());
 
-                Console.ReadKey(true);
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
@@ -231,7 +232,8 @@ namespace Lab.EF.UI
 
                 Console.WriteLine(table.ToPrettyPrintedString());
 
-                Console.ReadKey(true);
+                Console.ReadKey();
+
             }
             catch (Exception ex)
             {
@@ -313,7 +315,7 @@ namespace Lab.EF.UI
                     Console.WriteLine("Null");
                 }
 
-                Console.ReadKey(true);
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
@@ -349,12 +351,12 @@ namespace Lab.EF.UI
 
                 foreach (var item in query)
                 {
-                    table.Rows.Add(item.companyName, item.companyName.ToUpper());
+                    table.Rows.Add(item.customerId, item.companyName, item.companyName.ToUpper());
                 }
 
                 Console.WriteLine(table.ToPrettyPrintedString());
 
-                Console.ReadKey(true);
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
@@ -588,7 +590,7 @@ namespace Lab.EF.UI
                 Console.WriteLine($"Id producto: {query.ProductID}");
                 Console.WriteLine($"Nombre producto: {query.ProductName}\n");
 
-                Console.ReadKey(true);
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
