@@ -11,16 +11,6 @@ namespace Lab.EF.Logic
     {
         List<T> GetAll();
 
-        void Add(T type);
-
-        T ItemExist(int id);
-
-        T ItemExist(string name);
-
-        bool Delete(int id);
-
-        void Update(T entity);
-
 
        
 
