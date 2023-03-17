@@ -548,8 +548,8 @@ namespace Lab.EF.UI
 
                 var query2 = from product in query
                              join category in listCategories
-                             on new { product.CategoryID } equals
-                             new { category.CategoryID }
+                             on product.CategoryID equals
+                             category.CategoryID
                              select category;
 
                 DataTable table = new DataTable("Categorías");
