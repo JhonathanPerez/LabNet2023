@@ -1,10 +1,11 @@
 ﻿using DataTablePrettyPrinter;
 using Lab.EF.Entities;
 using Lab.EF.Logic;
-using Lab.EF.Utils;
+using Lab.EF.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace Lab.EF.UI
 {
@@ -18,45 +19,20 @@ namespace Lab.EF.UI
             Console.WriteLine("*********    MENÚ PRINCIPAL  *********");
             Console.WriteLine("**************************************");
             Console.WriteLine("**************************************");
-            Console.WriteLine("1. Listar Categorias");
-            Console.WriteLine("2. Adicionar nueva categoria");
-            Console.WriteLine("3. Eliminar categoría");
-            Console.WriteLine("4. Actualizar categoría");
-            Console.WriteLine("5. Listar Expedidores");
-            Console.WriteLine("6. Adicionar nuevo Expedidor");
-            Console.WriteLine("7. Eliminar Expedidor");
-            Console.WriteLine("8. Actualizar Expedidor");
-            Console.WriteLine("9. Salir\n");
-        }
-
-        public void printTableCategories(List<Categories> categories)
-        {
-            DataTable table = new DataTable("Categories");
-            table.Columns.Add("#", typeof(String));
-            table.Columns.Add("Nombre Categoría", typeof(String));
-            table.Columns.Add("Descripción Categoría", typeof(String));
-
-            foreach (Categories cat in categories)
-            {
-                table.Rows.Add(cat.CategoryID, cat.CategoryName, cat.Description);
-            }
-
-            Console.WriteLine(table.ToPrettyPrintedString());
-        }
-
-        public void printTableShippers(List<Shippers> shippers)
-        {
-            DataTable table = new DataTable("Shippers");
-            table.Columns.Add("#", typeof(String));
-            table.Columns.Add("Nombre Compañia", typeof(String));
-            table.Columns.Add("Teléfono Compañia", typeof(String));
-
-            foreach (Shippers ship in shippers)
-            {
-                table.Rows.Add(ship.ShipperID, ship.CompanyName, ship.Phone);
-            }
-
-            Console.WriteLine(table.ToPrettyPrintedString());
+            Console.WriteLine("1. Ejercicio 1");
+            Console.WriteLine("2. Ejercicio 2");
+            Console.WriteLine("3. Ejercicio 3");
+            Console.WriteLine("4. Ejercicio 4");
+            Console.WriteLine("5. Ejercicio 5");
+            Console.WriteLine("6. Ejercicio 6");
+            Console.WriteLine("7. Ejercicio 7");
+            Console.WriteLine("8. Ejercicio 8");
+            Console.WriteLine("9. Ejercicio 9");
+            Console.WriteLine("10. Ejercicio 10");
+            Console.WriteLine("11. Ejercicio 11");
+            Console.WriteLine("12. Ejercicio 12");
+            Console.WriteLine("13. Ejercicio 13");
+            Console.WriteLine("14. Salir\n");
         }
 
         public void Opciones()
@@ -76,34 +52,58 @@ namespace Lab.EF.UI
                     switch (opcion)
                     {
                         case 1:
-                            ListCategories();
+                            Ejercicio1();
                             break;
 
                         case 2:
-                            AddCategory();
+                            Ejercicio2();
                             break;
 
                         case 3:
-                            DeleteCategory();
+                            Ejercicio3();
                             break;
 
                         case 4:
-                            UpdateCategory();
+                            Ejercicio4();
                             break;
+
                         case 5:
-                            ListShippers();
+                            Ejercicio5();
                             break;
+
                         case 6:
-                            AddShipper();
+                            Ejercicio6();
                             break;
 
                         case 7:
-                            DeleteShipper();
+                            Ejercicio7();
                             break;
+
                         case 8:
-                            UpdateShipper();
+                            Ejercicio8();
                             break;
+
                         case 9:
+                            Ejercicio9();
+                            break;
+
+                        case 10:
+                            Ejercicio10();
+                            break;
+
+                        case 11:
+                            Ejercicio11();
+                            break;
+
+                        case 12:
+                            Ejercicio12();
+                            break;
+
+                        case 13:
+                            Ejercicio13();
+                            break;
+
+                        case 14:
                             salir = true;
                             break;
                     }
@@ -122,381 +122,520 @@ namespace Lab.EF.UI
             }
         }
 
-        public void ListCategories()
+        public void Ejercicio1()
         {
             try
             {
-                CategoriesLogic categorias = new CategoriesLogic();
-
-                List<Categories> listCategories = categorias.GetAll();
-
                 Console.Clear();
 
-                printTableCategories(listCategories);
+                Console.WriteLine("Query para devolver objeto customer\n\n");
 
-                Console.WriteLine("Presione una tecla para continuar...");
+                CustomersLogic customerLogic = new CustomersLogic();
 
-                Console.ReadLine();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ocurrió un error: " + ex.Message);
-                Console.ReadKey();
-            }
-        }
+                List<Customers> listCustomers = customerLogic.GetAll();
 
-        public void AddCategory()
-        {
-            string categoryName;
+                var query = listCustomers.Take(1);
 
-            CategoriesLogic categoryLogic = new CategoriesLogic();
+                DataTable table = new DataTable("Clientes");
 
-            Console.Clear();
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Nombre cliente", typeof(String));
+                table.Columns.Add("Nombre contacto", typeof(String));
+                table.Columns.Add("Dirección cliente", typeof(String));
+                table.Columns.Add("Ciudad cliente", typeof(String));
+                table.Columns.Add("Teléfono", typeof(String));
 
-            try
-            {
-                Console.Write("Ingrese el nombre de la categoría: ");
-                categoryName = Console.ReadLine();
-
-                ValidateDataAddCategory(categoryName, categoryLogic);
-
-            }
-            catch (Exception)
-            {
-                Console.Clear();
-                Console.WriteLine("Error al ingresar el dato: No se permiten datos nulos");
-                Console.ReadKey();
-            }
-        }
-
-        public void DeleteCategory()
-        {
-            int idCategory;
-
-            CategoriesLogic categoriaLogic = new CategoriesLogic();
-
-            Console.Clear();
-
-            try
-            {
-                Console.Write("Ingrese el id de la categoría a eliminar: ");
-                idCategory = Convert.ToInt32(Console.ReadLine());
-
-                Console.Clear();
-
-                if (categoriaLogic.Delete(idCategory))
+                foreach (var item in query)
                 {
-                    Console.WriteLine("Categoría eliminada exitosamente!!");
+                    table.Rows.Add(item.CustomerID, item.CompanyName, item.ContactName, item.Address, item.City, item.Phone);
                 }
 
-                Console.ReadKey();
-            }
-            catch (WrongIdException ex)
-            {
-                Console.Clear();
-                Console.WriteLine(ex.Message);
-                Console.ReadKey();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ocurrió un error " + ex.Message);
-                Console.ReadKey();
-            }
-        }
+                Console.WriteLine(table.ToPrettyPrintedString());
 
-        public void UpdateCategory()
-        {
-            int idCategory;
-
-            CategoriesLogic categoriaLogic = new CategoriesLogic();
-
-            Console.Clear();
-
-            try
-            {
-                Console.Write("Ingrese el id de la categoría a editar: ");
-                idCategory = Convert.ToInt32(Console.ReadLine());
-
-                validateDataUpdateCategory(idCategory, categoriaLogic);
-
-            }
-            catch (Exception)
-            {
-                Console.Clear();
-                Console.WriteLine("Error al ingresar el dato: No se permiten datos nulos");
-                Console.ReadKey();
-            }
-        }
-
-        public void ListShippers()
-        {
-            try
-            {
-                ShippersLogic shippers = new ShippersLogic();
-
-                List<Shippers> listShippers = shippers.GetAll();
-
-                Console.Clear();
-
-                printTableShippers(listShippers);
-
-                Console.WriteLine("Presione una tecla para continuar...");
-
-                Console.ReadLine();
+                Console.ReadKey(true);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Ocurrió un error: " + ex.Message);
-                Console.ReadKey();
             }
         }
 
-        public void AddShipper()
+        public void Ejercicio2()
         {
-            string companyName;
-
-            ShippersLogic shippersLogic = new ShippersLogic();
-
-            Console.Clear();
-
             try
             {
-                Console.Write("Ingrese el nombre de la compañia: ");
-                companyName = Console.ReadLine();
-
-                ValidateDataAddShipper(companyName, shippersLogic);
-
-
-            }
-            catch (Exception)
-            {
-                Console.Clear();
-                Console.WriteLine("Error al ingresar el dato: No se permiten datos nulos");
-                Console.ReadKey();
-            }
-        }
-
-        public void DeleteShipper()
-        {
-            int idShipper;
-
-            ShippersLogic shipperLogic = new ShippersLogic();
-
-            Console.Clear();
-
-            try
-            {
-                Console.Write("Ingrese el id de la compañia a eliminar: ");
-                idShipper = Convert.ToInt32(Console.ReadLine());
-
                 Console.Clear();
 
-                if (shipperLogic.Delete(idShipper))
+                Console.WriteLine("Query para devolver todos los productos sin stock\n\n");
+
+                ProductsLogic productLogic = new ProductsLogic();
+
+                List<Products> listProducts = productLogic.GetAll();
+
+                var query = from product in listProducts
+                            where product.UnitsInStock == 0
+                            select new ProductDto
+                            {
+                                productId = product.ProductID,
+                                productName = product.ProductName,
+                                unitsInStock = product.UnitsInStock
+                            };
+
+                DataTable table = new DataTable("Productos");
+
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Nombre producto", typeof(String));
+                table.Columns.Add("Stock producto", typeof(String));
+
+                foreach (var item in query)
                 {
-                    Console.WriteLine("Compañia eliminada exitosamente!!");
+                    table.Rows.Add(item.productId, item.productName, item.unitsInStock);
                 }
 
-                Console.ReadKey();
-            }
-            catch (WrongIdException ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.ReadKey();
+                Console.WriteLine(table.ToPrettyPrintedString());
+
+                Console.ReadKey(true);
             }
             catch (Exception ex)
             {
-                Console.Clear();
                 Console.WriteLine("Ocurrió un error: " + ex.Message);
                 Console.ReadKey();
             }
         }
 
-        public void UpdateShipper()
+        public void Ejercicio3()
         {
-            int idShipper;
-
-            ShippersLogic shippersLogic = new ShippersLogic();
-
-            Console.Clear();
-
             try
             {
-                Console.Write("Ingrese el id de la compañia a editar: ");
-                idShipper = Convert.ToInt32(Console.ReadLine());
-
                 Console.Clear();
 
-                validateDataUpdateShipper(idShipper, shippersLogic);
+                Console.WriteLine("Query para devolver todos los productos que tienen stock y que cuestan más de 3 por unidad\n");
 
+                ProductsLogic productLogic = new ProductsLogic();
+
+                List<Products> listProducts = productLogic.GetAll();
+
+                var query = listProducts.Where(p => p.UnitsInStock != 0 && p.UnitPrice > 3).ToList();
+
+                DataTable table = new DataTable("Productos");
+
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Nombre producto", typeof(String));
+                table.Columns.Add("Stock producto", typeof(String));
+                table.Columns.Add("Precio por unidad", typeof(String));
+
+                foreach (var item in query)
+                {
+                    table.Rows.Add(item.ProductID, item.ProductName, item.UnitsInStock, item.UnitPrice);
+                }
+
+                Console.WriteLine(table.ToPrettyPrintedString());
+
+                Console.ReadKey(true);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.Clear();
-                Console.WriteLine("Error al ingresar el dato: No se permiten datos nulos");
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
                 Console.ReadKey();
             }
         }
 
-        public void ValidateDataAddCategory(string categoryName, CategoriesLogic categoriesLogic)
+        public void Ejercicio4()
         {
-            string categoryDescription;
-
-            if (categoriesLogic.ItemExist(categoryName) != null)
+            try
             {
                 Console.Clear();
-                Console.WriteLine("El nombre de la categoría ya existe en la base de datos");
+
+                Console.WriteLine("Query para devolver todos los customers de la Región WA\n");
+
+                CustomersLogic customerLogic = new CustomersLogic();
+
+                List<Customers> listCustomers = customerLogic.GetAll();
+
+                var query = from customer in listCustomers
+                            where customer.Region == "WA"
+                            select new CustomerDto
+                            {
+                                customerId = customer.CustomerID,
+                                companyName = customer.CompanyName,
+                                contactName = customer.ContactName,
+                                customerAdress = customer.Address,
+                                customerCity = customer.City,
+                                customerPhone = customer.Phone,
+                                customerRegion = customer.Region
+                            };
+
+                DataTable table = new DataTable("Clientes");
+
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Nombre cliente", typeof(String));
+                table.Columns.Add("Dirección cliente", typeof(String));
+                table.Columns.Add("Ciudad cliente", typeof(String));
+                table.Columns.Add("Teléfono", typeof(String));
+                table.Columns.Add("Región", typeof(String));
+
+                foreach (var item in query)
+                {
+                    table.Rows.Add(item.customerId, item.companyName, item.customerAdress, item.customerCity, item.customerPhone, item.customerRegion);
+                }
+
+                Console.WriteLine(table.ToPrettyPrintedString());
+
                 Console.ReadKey();
-                return;
             }
-
-            Console.Clear();
-            Console.Write("Ingrese la descripción de la categoría: ");
-            categoryDescription = Console.ReadLine();
-
-            Categories categoria = new Categories
+            catch (Exception ex)
             {
-                CategoryName = categoryName,
-                Description = categoryDescription
-
-            };
-
-            categoriesLogic.Add(categoria);
-
-            Console.Clear();
-            Console.WriteLine("Categoría agregada exitosamente");
-            Console.ReadKey();
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                Console.ReadKey();
+            }
         }
 
-        public void validateDataUpdateCategory(int idCategory, CategoriesLogic categoryLogic)
+        public void Ejercicio5()
         {
-            string categoryName;
-            string categoryDescription;
-
-            if (categoryLogic.ItemExist(idCategory) == null)
+            try
             {
                 Console.Clear();
-                Console.WriteLine($"La categoría con id {idCategory} no existe en el sistema");
-                Console.ReadKey();
-                return;
+
+                Console.WriteLine("Query para devolver el primer elemento o nulo de una lista de productos donde el ID de producto sea igual a 789\n");
+
+                ProductsLogic productLogic = new ProductsLogic();
+
+                List<Products> listProducts = productLogic.GetAll();
+
+                var query = listProducts.Where(p => p.ProductID == 789).FirstOrDefault();
+
+                if (query != null)
+                {
+                    Console.WriteLine(query);
+                }
+                else
+                {
+                    Console.WriteLine("Null");
+                }
+
+                Console.ReadKey(true);
             }
-
-            Console.Clear();
-            Console.Write("Ingrese el nuevo nombre de la categoría: ");
-            categoryName = Console.ReadLine();
-
-            if (categoryLogic.ItemExist(categoryName) != null)
+            catch (Exception ex)
             {
-                Console.Clear();
-                Console.WriteLine("El nombre de la categoria ya existe en la base de datos");
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
                 Console.ReadKey();
-                return;
             }
-
-            Console.Clear();
-
-            Console.Write("Ingrese la nueva descripción de la categoria: ");
-            categoryDescription = Console.ReadLine();
-
-            Categories updateCategory = new Categories
-            {
-                CategoryID = idCategory,
-                CategoryName = categoryName,
-                Description = categoryDescription
-
-            };
-
-            categoryLogic.Update(updateCategory);
-
-            Console.Clear();
-            Console.WriteLine("Categoría actualizada exitosamente");
-            Console.ReadKey();
         }
 
-        public void ValidateDataAddShipper(string companyName, ShippersLogic shippersLogic)
+        public void Ejercicio6()
         {
-            string companyPhone;
-
-            if (shippersLogic.ItemExist(companyName) != null)
+            try
             {
                 Console.Clear();
-                Console.WriteLine("El nombre de la compañia ya existe en la base de datos");
-                Console.ReadKey();
-                return;
+
+                Console.WriteLine("Query para devolver los nombre de los Customers. Mostrarlos en Mayuscula y en Minuscula\n");
+
+                CustomersLogic customerLogic = new CustomersLogic();
+
+                List<Customers> listCustomers = customerLogic.GetAll();
+
+                var query = from customer in listCustomers
+                            select new CustomerDto
+                            {
+                                customerId = customer.CustomerID,
+                                companyName = customer.CompanyName
+                            };
+
+                DataTable table = new DataTable("Clientes");
+
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Nombre cliente minúscula", typeof(String));
+                table.Columns.Add("Nombre cliente mayusculas", typeof(String));
+
+                foreach (var item in query)
+                {
+                    table.Rows.Add(item.companyName, item.companyName.ToUpper());
+                }
+
+                Console.WriteLine(table.ToPrettyPrintedString());
+
+                Console.ReadKey(true);
             }
-
-            Console.Write("Ingrese el teléfono de la compañia: ");
-            companyPhone = Console.ReadLine();
-
-            if (!companyPhone.ContainLetters())
+            catch (Exception ex)
             {
-                Console.Clear();
-                Console.WriteLine("El campo de teléfono solo acepta valores númericos");
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
                 Console.ReadKey();
-                return;
             }
-
-            Shippers shipper = new Shippers
-            {
-                CompanyName = companyName,
-                Phone = companyPhone
-
-            };
-
-            shippersLogic.Add(shipper);
-
-            Console.Clear();
-            Console.WriteLine("Compañia agregada exitosamente");
-            Console.ReadKey();
         }
 
-        public void validateDataUpdateShipper(int idShipper, ShippersLogic shippersLogic)
+        public void Ejercicio7()
         {
-            string shipperName;
-            string shipperPhone;
-
-            if (shippersLogic.ItemExist(idShipper) == null)
-            {
-                Console.WriteLine($"La compañia con id {idShipper} no existe en el sistema");
-                Console.ReadKey();
-                return;
-            }
-
-            Console.Write("Ingrese el nuevo nombre de la compañia: ");
-            shipperName = Console.ReadLine();
-
-            if (shippersLogic.ItemExist(shipperName) != null)
+            try
             {
                 Console.Clear();
-                Console.WriteLine("El nombre de la compañia ya existe en la base de datos");
+
+                Console.WriteLine("Query para devolver Join entre Customers y Orders donde los customers sean de la Región WA y la fecha de orden sea mayor a 1/1/1997.\n");
+
+                CustomersLogic customerLogic = new CustomersLogic();
+                OrdersLogic orderLogic = new OrdersLogic();
+
+                List<Customers> listCustomers = customerLogic.GetAll();
+                List<Orders> listOrders = orderLogic.GetAll();
+
+                var query = from customer in listCustomers
+                            join order in listOrders
+                            on customer.CustomerID equals order.CustomerID
+                            where order.OrderDate > Convert.ToDateTime("1997/1/1") && customer.Region == "WA"
+                            select new CustomerDto
+                            {
+                                customerId = customer.CustomerID,
+                                companyName = customer.CompanyName,
+                                customerRegion = customer.Region,
+                                OrderDate = order.OrderDate
+                            };
+
+                DataTable table = new DataTable("Clientes y ordenes");
+
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Nombre cliente", typeof(String));
+                table.Columns.Add("Región cliente", typeof(String));
+                table.Columns.Add("Fecha orden", typeof(String));
+
+                foreach (var item in query)
+                {
+                    table.Rows.Add(item.customerId, item.companyName, item.customerRegion, item.OrderDate);
+                }
+
+                Console.WriteLine(table.ToPrettyPrintedString());
+
                 Console.ReadKey();
-                return;
             }
-
-            Console.Write("Ingrese el nuevo teléfono de la compañia: ");
-            shipperPhone = Console.ReadLine();
-
-            if (!shipperPhone.ContainLetters())
+            catch (Exception ex)
             {
-                Console.Clear();
-                Console.WriteLine("El campo de teléfono solo acepta valores númericos");
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
                 Console.ReadKey();
-                return;
             }
-
-            Shippers updatedShipper = new Shippers
-            {
-                ShipperID = idShipper,
-                CompanyName = shipperName,
-                Phone = shipperPhone
-
-            };
-
-            shippersLogic.Update(updatedShipper);
-
-            Console.Clear();
-            Console.WriteLine("Compañia actualizada exitosamente");
-            Console.ReadKey();
         }
 
+        public void Ejercicio8()
+        {
+            try
+            {
+                Console.Clear();
+
+                Console.WriteLine("Query para devolver los primeros 3 Customers de la  Región WA\n");
+
+                CustomersLogic customerLogic = new CustomersLogic();
+
+                List<Customers> listCustomers = customerLogic.GetAll();
+
+                var query = listCustomers.Where(c => c.Region == "WA").Take(3);
+
+                DataTable table = new DataTable("Clientes WA");
+
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Nombre cliente", typeof(String));
+                table.Columns.Add("Región cliente", typeof(String));
+
+                foreach (var item in query)
+                {
+                    table.Rows.Add(item.CustomerID, item.CompanyName, item.Region);
+                }
+
+                Console.WriteLine(table.ToPrettyPrintedString());
+
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                Console.ReadKey();
+            }
+        }
+
+        public void Ejercicio9()
+        {
+            try
+            {
+                Console.Clear();
+
+                Console.WriteLine("Query para devolver lista de productos ordenados por nombre\n");
+
+                ProductsLogic productLogic = new ProductsLogic();
+
+                List<Products> listProducts = productLogic.GetAll();
+
+                var query = from product in listProducts
+                            orderby product.ProductName
+                            select new ProductDto
+                            {
+                                productId = product.ProductID,
+                                productName = product.ProductName
+                            };
+
+                DataTable table = new DataTable("Productos");
+
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Nombre producto", typeof(String));
+
+                foreach (var item in query)
+                {
+                    table.Rows.Add(item.productId, item.productName);
+                }
+
+                Console.WriteLine(table.ToPrettyPrintedString());
+
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un erro: " + ex.Message);
+                Console.ReadKey();
+            }
+        }
+
+        public void Ejercicio10()
+        {
+            try
+            {
+                Console.Clear();
+
+                Console.WriteLine("Query para devolver lista de productos ordenados por unit in stock de mayor a menor.\n");
+
+                ProductsLogic productLogic = new ProductsLogic();
+
+                List<Products> listProducts = productLogic.GetAll();
+
+                var query = listProducts.OrderByDescending(p => p.UnitsInStock);
+
+                DataTable table = new DataTable("Productos");
+
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Nombre producto", typeof(String));
+                table.Columns.Add("Unidades stock", typeof(String));
+
+                foreach (var item in query)
+                {
+                    table.Rows.Add(item.ProductID, item.ProductName, item.UnitsInStock);
+                }
+
+                Console.WriteLine(table.ToPrettyPrintedString());
+
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+            }
+        }
+
+        public void Ejercicio11()
+        {
+            try
+            {
+                Console.Clear();
+
+                Console.WriteLine("Query para devolver las distintas categorías asociadas a los productos\n");
+
+                ProductsLogic productLogic = new ProductsLogic();
+                CategoriesLogic categoriesLogic = new CategoriesLogic();
+
+                List<Products> listProducts = productLogic.GetAll();
+                List<Categories> listCategories = categoriesLogic.GetAll();
+
+                var query = (from product in listProducts
+                             select new
+                             {
+                                 CategoryID = Convert.ToInt32(product.CategoryID)
+                             }).Distinct().ToList();
+
+                var query2 = from product in query
+                             join category in listCategories
+                             on new { product.CategoryID } equals
+                             new { category.CategoryID }
+                             select category;
+
+                DataTable table = new DataTable("Categorías");
+
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Nombre categoría", typeof(String));
+
+                foreach (var item in query2)
+                {
+                    table.Rows.Add(item.CategoryID, item.CategoryName);
+                }
+
+                Console.WriteLine(table.ToPrettyPrintedString());
+
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                Console.ReadKey();
+            }
+        }
+
+        public void Ejercicio12()
+        {
+            try
+            {
+                Console.Clear();
+
+                Console.WriteLine("Query para devolver el primer elemento de una lista de productos\n");
+
+                ProductsLogic productLogic = new ProductsLogic();
+
+                List<Products> listProducts = productLogic.GetAll();
+
+                var query = listProducts.FirstOrDefault();
+
+                Console.WriteLine($"Id producto: {query.ProductID}");
+                Console.WriteLine($"Nombre producto: {query.ProductName}\n");
+
+                Console.ReadKey(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                Console.ReadKey();
+            }
+        }
+
+        public void Ejercicio13()
+        {
+            try
+            {
+                Console.Clear();
+
+                Console.WriteLine("Query para devolver los customer con la cantidad de ordenes asociadas\n");
+
+                OrdersLogic orderLogic = new OrdersLogic();
+
+                List<Orders> listOrders = orderLogic.GetAll();
+
+                var query = listOrders
+                .GroupBy(c => c.CustomerID)
+                .Select(o => new CustomerDto
+                {
+                    customerId = o.Key,
+                    customerCountOrders = o.Count()
+                });
+
+                DataTable table = new DataTable("Ordenes");
+
+                table.Columns.Add("ID", typeof(String));
+                table.Columns.Add("Número de ordenes", typeof(String));
+
+                foreach (var item in query)
+                {
+                    table.Rows.Add(item.customerId, item.customerCountOrders);
+                }
+
+                Console.WriteLine(table.ToPrettyPrintedString());
+
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                Console.ReadKey();
+            }
+        }
     }
 }
