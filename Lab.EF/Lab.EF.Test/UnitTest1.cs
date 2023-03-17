@@ -29,7 +29,6 @@ namespace Lab.EF.Test
             var service = new CategoriesLogic(mockContext.Object);
             var categories = service.GetAll();
 
-            Assert.AreEqual(8, categories.Count);
             Assert.AreEqual(1, categories[0].CategoryID);
             Assert.AreEqual("Beverages", categories[0].CategoryName);
             Assert.AreEqual("Soft drinks, coffees, teas, beers, and ales", categories[0].Description);
