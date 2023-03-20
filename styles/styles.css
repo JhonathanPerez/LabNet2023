@@ -1,0 +1,32 @@
+body {
+  background-color: azure;
+}
+
+.alertGame {
+  display: none;
+}
+
+.alertLostGame {
+  display: none;
+}
+
+.alertWinGame {
+  display: none;
+}
+
+.formulario {
+  padding-top: 50px;
+}
+
+.img {
+  width: 20%;
+  height: 2 0%;
+}
+
+.score {
+  display: inline;
+}
+
+.highScore {
+  display: inline;
+}
