@@ -9,6 +9,8 @@ let $message = document.getElementById("message");
 let $score = document.getElementById("score");
 let $highScore = document.getElementById("highScore");
 let $numbers = document.getElementById("numbers");
+let $randomNumber = document.getElementById("randomNumber");
+let $btnValidar = document.getElementById("btnValidar");
 let inputNumbers = [];
 
 $score.textContent = score;
@@ -47,7 +49,7 @@ function juego() {
     $alertGame.style.display = "block";
     $message.textContent = "Intenta con un número mayor";
     verifyNumber($number);
-    document.getElementById("randomNumber").value = "";
+    $randomNumber.value = "";
     score -= 1;
     $score.textContent = score;
     return;
@@ -57,7 +59,7 @@ function juego() {
     $alertGame.style.display = "block";
     $message.textContent = "Intenta con un número menor";
     verifyNumber($number);
-    document.getElementById("randomNumber").value = "";
+    $randomNumber.value = "";
     score -= 1;
     $score.textContent = score;
     return;
@@ -66,7 +68,7 @@ function juego() {
   $alertGame.style.display = "none";
   $alertWinGame.style.display = "block";
   splashConfetti("Win");
-  document.getElementById("btnValidar").disabled = true;
+  $btnValidar.disabled = true;
   validateHighScore($score.textContent);
 }
 
@@ -88,13 +90,13 @@ function validateHighScore(score) {
 function reset() {
   score = initialScore;
   $score.textContent = score;
-  document.getElementById("randomNumber").value = "";
+  $randomNumber.value = "";
   inputNumbers = [];
   $numbers.textContent = "Aún no has ingresado números";
   $alertGame.style.display = "none";
   $alertLostGame.style.display = "none";
   $alertWinGame.style.display = "none";
-  document.getElementById("btnValidar").disabled = false;
+  $btnValidar.disabled = false;
   randomNumber = getRandomInt(20);
 }
 
