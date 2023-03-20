@@ -20,10 +20,10 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-2">
+        <div class="col-12 col-md-2">
           <h4>Score: <span id="score">19</span></h4>
         </div>
-        <div class="col-2">
+        <div class="col-12 col-md-2">
           <h4>Highscore: <span id="highScore">0</span></h4>
         </div>
       </div>
@@ -39,6 +39,8 @@
               placeholder="Ingrese un número"
               id="randomNumber"
               required
+              min="1"
+              max="20"
             />
           </div>
           <div class="d-flex justify-content-center">
@@ -61,7 +63,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-12 col-md-6">
+        <div class="col-12 col-md-6 mt-sm-5 mt-md-0">
           <div class="card">
             <h5 class="card-header">Números ingresados</h5>
             <div class="card-body">
@@ -89,9 +91,7 @@
             class="alert alert-danger alertLostGame"
             id="alertLostGame"
             role="alert"
-          >
-            Opps!! Perdiste la partida
-          </div>
+          ></div>
         </div>
       </div>
       <div class="d-flex row justify-content-center">

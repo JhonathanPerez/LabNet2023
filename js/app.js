@@ -19,10 +19,7 @@ function getRandomInt(max) {
 
 if (!navigator.onLine) {
   alert("Conectate a internet");
-  window.close();
 }
-
-console.log(randomNumber);
 
 function juego() {
   let $number = document.getElementById("randomNumber").value;
@@ -30,6 +27,7 @@ function juego() {
   if (score == 1) {
     $alertGame.style.display = "none";
     $alertLostGame.style.display = "block";
+    $alertLostGame.textContent = `Perdiste el número era ${randomNumber}`;
     splashConfetti();
     return;
   }
