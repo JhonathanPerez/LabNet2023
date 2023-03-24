@@ -40,6 +40,11 @@ namespace Lab.EF.Logic
             return _nortwindContext.Shippers.ToList();
         }
 
+        public Shippers GetOne(int id)
+        {
+            return _nortwindContext.Shippers.First(s => s.ShipperID == id);
+        }
+
         public Shippers ItemExist(int id)
         {
             var shipper = _nortwindContext.Shippers.Find(id);
