@@ -21,8 +21,11 @@ namespace Lab.EF.Logic
 
         void Update(T entity);
 
+        T GetOne(int id);
 
-       
+
+
+
 
 
     }
