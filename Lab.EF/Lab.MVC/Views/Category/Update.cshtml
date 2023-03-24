@@ -1,0 +1,30 @@
+﻿@model Lab.MVC.Models.CategoryViewModel
+
+
+<h2 class="pb-3">@ViewBag.Title</h2>
+
+@using (Html.BeginForm("CreateEdit"))
+{
+    @Html.HiddenFor(m => m.id)
+
+    <div class="row">
+        <div class="col-12  ">
+            @Html.LabelFor(m => m.categoryName)
+            @Html.TextBoxFor(m => m.categoryName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.categoryName, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-12 mt-4 mt-md-0">
+            @Html.LabelFor(m => m.categoryDescription)
+            @Html.TextBoxFor(m => m.categoryDescription, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.categoryDescription, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-12 col-md-4 mt-4">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+}
