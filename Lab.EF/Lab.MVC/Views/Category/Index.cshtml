@@ -1,7 +1,54 @@
-﻿
+﻿@model List<Lab.MVC.Models.CategoryViewModel>
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="d-flex justify-content-center">
+    <h2>Categorias</h2>
+</div>
 
+<div>
+    @Html.ActionLink(
+                       "Agregar categoría",
+                       "Create",
+                       "Category",
+                       new { @class = "btn btn-success" })
+</div>
+
+<table class="table table-striped table-bordered mt-5">
+    <thead>
+        <tr>
+            <td class="text-center">ID</td>
+            <td class="text-center">Nombre categoria</td>
+            <td class="text-center">Descripción</td>
+            <td class="text-center" colspan="2">Opciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.categoryName</td>
+                <td>@item.categoryDescription</td>
+                <td>
+                    @Html.ActionLink(
+                        "Editar",
+                        "Update",
+                        "Category",
+                        new { item.id },
+                        new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    @Html.ActionLink(
+                        "Eliminar",
+                        "Delete",
+                        "Category",
+                        new { item.id },
+                        new { @class = "btn btn-danger", onclick= "return confirm('Está seguro que desea eliminar este registro?');" })
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
