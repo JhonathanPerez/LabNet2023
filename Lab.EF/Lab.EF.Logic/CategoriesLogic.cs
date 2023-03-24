@@ -70,5 +70,10 @@ namespace Lab.EF.Logic
 
             _nortwindContext.SaveChanges();
         }
+
+        public Categories GetOne(int id)
+        {
+            return _nortwindContext.Categories.First(c => c.CategoryID == id);
+        }
     }
 }
