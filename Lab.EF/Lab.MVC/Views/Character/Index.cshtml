@@ -1,0 +1,26 @@
+﻿@model List<Lab.MVC.Models.CharacterJson>
+@{
+    ViewBag.Title = "Ricky and Morty Character List";
+}
+
+<h1 class="text-center pb-5">@ViewBag.Title</h1>
+
+<div class="comtainer">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+           <div class="d-flex col-12 col-md-4 pb-4 justify-content-sm-center">
+               <div class="card" style="width: 18rem;">
+                   <img class="card-img-top" src="@item.image" alt="@item.name">
+                   <div class="card-body">
+                       <span class="d-block fw-bold">Nombre: @item.name</span>
+                       <span class="fw-bold">Estado:</span>
+                       <span class="badge @(item.status == "Alive" ? "bg-success" : "bg-danger" )">@item.status</span>
+                       <span class="d-block fw-bold">Especie: @item.species</span>
+                       <span class="d-block fw-bold">Nombre: @item.gender</span>
+                   </div>
+               </div>
+           </div>
+        }
+    </div>
+</div>
