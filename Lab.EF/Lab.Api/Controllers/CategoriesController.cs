@@ -4,6 +4,7 @@ using Lab.EF.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
 
 namespace Lab.Api.Controllers
@@ -44,6 +45,11 @@ namespace Lab.Api.Controllers
         {
             try
             {
+                if (categoriesLogic.ItemExist(id) == null)
+                {
+                    return Content(HttpStatusCode.NotFound, $"No existe una categoría con ID {id}");
+                }
+
                 var data = categoriesLogic.GetOne(id);
 
                 CategoriesDto category = new CategoriesDto();
@@ -66,7 +72,7 @@ namespace Lab.Api.Controllers
             {
                 if (categoriesLogic.ItemExist(categoriesDto.CategoryName) != null)
                 {
-                    return BadRequest("Ya existe una categoría con ese nombre");
+                    return Content(HttpStatusCode.Conflict, "Ya existe una categoría con ese nombre");
                 }
 
                 Categories category = new Categories();
@@ -90,7 +96,12 @@ namespace Lab.Api.Controllers
             {
                 if (categoriesLogic.ItemExist(id) == null)
                 {
-                    return BadRequest($"No existe una categoría con ID {categoriesDto.CategoryID}");
+                    return Content(HttpStatusCode.NotFound, $"No existe una categoría con ID {id}");
+                }
+
+                if (categoriesLogic.ItemExist(categoriesDto.CategoryName) != null)
+                {
+                    return Content(HttpStatusCode.Conflict, "Ya existe una categoría con ese nombre");
                 }
 
                 Categories category = new Categories();
@@ -115,7 +126,7 @@ namespace Lab.Api.Controllers
             {
                 if (categoriesLogic.ItemExist(id) == null)
                 {
-                    return BadRequest($"No existe una categoría con ID {id}");
+                    return Content(HttpStatusCode.NotFound, $"No existe una categoría con ID {id}");
                 }
 
                 categoriesLogic.Delete(id);
