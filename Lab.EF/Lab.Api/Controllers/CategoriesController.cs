@@ -89,7 +89,7 @@ namespace Lab.Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult Put(int id, CategoriesDto categoriesDto)
         {
             try
