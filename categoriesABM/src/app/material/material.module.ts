@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -32,6 +33,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatSnackBarModule,
     MatProgressBarModule,
     MatGridListModule,
+    MatDialogModule,
   ],
   exports: [
     MatSliderModule,
@@ -47,6 +49,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatSnackBarModule,
     MatProgressBarModule,
     MatGridListModule,
+    MatDialogModule,
   ],
 })
 export class MaterialModule {}
