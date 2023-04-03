@@ -15,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [],
@@ -34,6 +35,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatProgressBarModule,
     MatGridListModule,
     MatDialogModule,
+    MatToolbarModule,
   ],
   exports: [
     MatSliderModule,
@@ -50,6 +52,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatProgressBarModule,
     MatGridListModule,
     MatDialogModule,
+    MatToolbarModule,
   ],
 })
 export class MaterialModule {}
