@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUpdateCategoryComponent } from '../add-update-category/add-update-category.component';
 import { ToastService } from 'angular-toastify';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-category',
@@ -81,9 +82,15 @@ export class ListCategoryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getCategory() {
     this.loading = true;
-    this._categoryService.getCategories().subscribe((data) => {
-      this.loading = false;
-      this.dataSource.data = data;
+    this._categoryService.getCategories().subscribe({
+      next: (data) => {
+        this.loading = false;
+        this.dataSource.data = data;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+        this._toastService.error(err.message);
+      },
     });
   }
 

@@ -20,7 +20,7 @@ export class CategoryService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.myAppUrl}`).pipe(
       catchError((error) => {
-        return throwError(() => new Error(error.Message));
+        return throwError(() => new Error(error.message));
       })
     );
   }
