@@ -101,7 +101,7 @@ namespace Lab.Api.Controllers
                     return Content(HttpStatusCode.NotFound, $"No existe una categoría con ID {id}");
                 }
 
-                if (categoriesLogic.ItemExist(categoriesDto.CategoryName) != null)
+                if (categoriesLogic.ItemExist(categoriesDto.CategoryName) != null && categoriesLogic.ItemExist(categoriesDto.CategoryName).CategoryID != id)
                 {
                     return Content(HttpStatusCode.Conflict, "Ya existe una categoría con ese nombre");
                 }
